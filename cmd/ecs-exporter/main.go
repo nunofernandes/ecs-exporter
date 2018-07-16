@@ -49,6 +49,9 @@ func Main() int {
              </body>
              </html>`))
 	})
+	http.HandleFunc("/_/health", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte(`ok`))
+	})
 
 	log.Infoln("Listening on", cfg.listenAddress)
 	log.Fatal(http.ListenAndServe(cfg.listenAddress, nil))
